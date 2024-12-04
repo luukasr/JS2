@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sort Numbers</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+        }
+        #output {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Number Collector and Sorter</h1>
+    <p>Click "Start" to enter numbers. Input zero (0) to stop.</p>
+    <button onclick="startNumberInput()">Start</button>
+    <div id="output"></div>
+
+    <script>
+        function startNumberInput() {
+            const numbers = [];
+            let input;
+
+            // Continuously prompt the user for numbers
+            do {
+                input = parseFloat(prompt("Enter a number (0 to stop):"));
+
+                if (!isNaN(input) && input !== 0) {
+                    numbers.push(input); // Add valid numbers to the array
+                }
+            } while (input !== 0);
+
+            // Sort the numbers in descending order
+            numbers.sort((a, b) => b - a);
+
+            // Print the sorted numbers in the console
+            console.log("Numbers from largest to smallest:", numbers);
+
+            // Display the sorted numbers on the page
+            document.getElementById("output").textContent =
+                numbers.length > 0
+                    ? `Numbers from largest to smallest: ${numbers.join(", ")}`
+                    : "No numbers were entered.";
+        }
+    </script>
+</body>
+</html>

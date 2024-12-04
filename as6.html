@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dice Roller</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dice Roller</h1>
+    <p>Rolling the dice until we get a 6!</p>
+    <ul id="result-list"></ul>
+
+    <script>
+        // Function to simulate a dice roll
+        function rollDice() {
+            return Math.floor(Math.random() * 6) + 1;
+        }
+
+        // Main program to roll the dice until we get a 6
+        function rollUntilSix() {
+            const resultList = document.getElementById('result-list');
+            let rollResult;
+
+            // Roll the dice until we get a 6
+            do {
+                rollResult = rollDice();
+                const li = document.createElement('li');
+                li.textContent = `Rolled: ${rollResult}`;
+                resultList.appendChild(li);
+            } while (rollResult !== 6);
+
+            // Print final result in the console
+            console.log("Final roll: 6");
+        }
+
+        // Start rolling when the page loads
+        rollUntilSix();
+    </script>
+</body>
+</html>

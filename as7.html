@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dice Roller with Custom Sides</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Roll a Custom-Sided Dice</h1>
+    <p>Rolling the dice until we get the maximum number!</p>
+    <ul id="result-list"></ul>
+
+    <script>
+        // Function to simulate a dice roll with a specified number of sides
+        function rollDice(sides) {
+            return Math.floor(Math.random() * sides) + 1;
+        }
+
+        // Main program to roll the dice until we get the maximum number
+        function rollUntilMax() {
+            // Ask user for the number of sides on the dice
+            const sides = parseInt(prompt("Enter the number of sides on the dice:"), 10);
+
+            // Validate the input to ensure it's a number and greater than 1
+            if (isNaN(sides) || sides <= 1) {
+                alert("Please enter a valid number of sides greater than 1.");
+                return;
+            }
+
+            const resultList = document.getElementById('result-list');
+            let rollResult;
+
+            // Roll the dice until we get the maximum number (sides of the dice)
+            do {
+                rollResult = rollDice(sides);
+                const li = document.createElement('li');
+                li.textContent = `Rolled: ${rollResult}`;
+                resultList.appendChild(li);
+            } while (rollResult !== sides);
+
+            // Print final result in the console
+            console.log(`Final roll: ${sides}`);
+        }
+
+        // Start rolling when the page loads
+        rollUntilMax();
+    </script>
+</body>
+</html>

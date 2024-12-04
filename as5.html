@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duplicate Number Detector</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+        }
+        #output {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Number Tracker</h1>
+    <p>Click "Start" to begin entering numbers. If you enter a duplicate, the program will stop.</p>
+    <button onclick="startNumberTracking()">Start</button>
+    <div id="output"></div>
+
+    <script>
+        function startNumberTracking() {
+            const numbers = new Set(); // To store unique numbers
+            let input;
+            let isDuplicate = false;
+
+            // Continuously prompt the user for numbers
+            while (!isDuplicate) {
+                input = parseFloat(prompt("Enter a number:"));
+
+                // Check if input is a valid number
+                if (isNaN(input)) {
+                    alert("Please enter a valid number.");
+                    continue;
+                }
+
+                // Check if the number is a duplicate
+                if (numbers.has(input)) {
+                    isDuplicate = true;
+                    alert(`The number ${input} has already been given! Stopping.`);
+                } else {
+                    numbers.add(input); // Add the number to the set
+                }
+            }
+
+            // Convert set to array and sort in ascending order
+            const sortedNumbers = Array.from(numbers).sort((a, b) => a - b);
+
+            // Print the numbers to the console
+            console.log("Numbers in ascending order:", sortedNumbers);
+
+            // Display the numbers on the page
+            document.getElementById("output").textContent =
+                `Numbers in ascending order: ${sortedNumbers.join(", ")}`;
+        }
+    </script>
+</body>
+</html>
